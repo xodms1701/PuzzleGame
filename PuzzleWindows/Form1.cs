@@ -59,7 +59,54 @@ namespace PuzzleWindows
         {
             int tmpX = e.X;
             int tmpY = e.Y;
-            MessageBox.Show(tmpX + "," + tmpY);
+            /*int x = 50;
+            int tmp=0;
+            for (int i = 0; i < 4; i++)
+            {
+                if (tmpX > (x+i*100) && tmpX < (x+i*100)+100)
+                {
+                    if (tmpY > 50 && tmpY < 150)
+                    {
+                        tmp = i;
+                    }
+                    else if (tmpY > 150 && tmpY < 250)
+                    {
+                        tmp = i+4;
+                    }
+                    else if (tmpY > 250 && tmpY < 350)
+                    {
+                        tmp = i+8;
+
+                    }
+                    else if (tmpY > 350 && tmpY < 450)
+                    {
+                        tmp = i+12;
+                    }
+                }
+                pge.Change(tmp);
+            }*/
+            if (!(50 <= tmpX && tmpX <= 4 * imgWidth + 50 && 50 <= tmpY && tmpY <= 4 * Height + 50))
+            {
+                return;
+            }
+            tmpX -= 50;
+            tmpY -= 50;
+            tmpX /= imgWidth;
+            tmpY /= imgHeight;
+            int index = tmpX + tmpY * 4;
+
+            pge.Change(index);
+            Invalidate();
+
+            //다 맞췄으면,메시지 박스 ㅊㅋㅊㅋ
+            //창닫자
+            if (pge.isEnd())
+            {
+                MessageBox.Show("추카추카");
+                Close();
+            }
         }
+
+        
     }
 }
